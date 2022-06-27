@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebTenMeetings.Models.Pauta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Pautas</h1>
+
+<p>
+     <a  asp-action="Create"><button class="btn btn-primary">Criar Uma Pauta</button></a>
+</p>
+<table  class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <p>Nome</p>
+            </th>
+            <th>
+                <p>Quantidade de Votos</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QtdTotalVotos)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PautaId"><button class="btn btn-primary">Editar</button></a> |
+                <a asp-action="Details" asp-route-id="@item.PautaId"><button class="btn btn-success">Detalhes</button></a> |
+                <a asp-action="Delete" asp-route-id="@item.PautaId"><button class="btn btn-danger">Deletar</button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

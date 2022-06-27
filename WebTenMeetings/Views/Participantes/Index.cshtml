@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebTenMeetings.Models.Participante>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Participante</h1>
+
+<p>
+    <a  asp-action="Create"><button class="btn btn-primary">Adicionar Participante</button></a>
+</p>
+<table  class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-primary">Editar</button></a> |
+                <a asp-action="Details" asp-route-id="@item.Id"><button class="btn btn-success">Detalhes</button></a> |
+                <a asp-action="Delete" asp-route-id="@item.Id"><button class="btn btn-danger">Deletar</button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

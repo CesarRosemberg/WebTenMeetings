@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebTenMeetings.Models.Assembleia>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<body class="bg-teal"></body>
+<div class="conteiner ">
+    <h1>Criar uma Assembléia</h1>
+
+<p>
+    <a  asp-action="Create"><button class="btn btn-primary">Criar Assembléia</button></a>
+</p>
+<table  class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AssembleiaId"><button class="btn btn-primary">Editar</button></a> |
+                <a asp-action="Details" asp-route-id="@item.AssembleiaId"><button class="btn btn-success">Detalhes</button></a> |
+                <a asp-action="Delete" asp-route-id="@item.AssembleiaId"><button class="btn btn-danger">Deletar</button></a>
+               @* <a asp-action="Participante" asp-route-id="@item.AssembleiaId">Adicionar Pautas</a>
+                <a asp-action="Pauta" asp-route-id="@item.AssembleiaId">Adicionar Participante</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+
