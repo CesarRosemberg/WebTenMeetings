@@ -22,8 +22,7 @@ namespace WebTenMeetings.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Assembleias != null ? 
-                          View(await _context.Assembleias.ToListAsync()
-) :
+                          View(await _context.Assembleias.ToListAsync()) :
                           Problem("Entity set 'contexto.Assembleias'  is null.");
         }
 
@@ -164,5 +163,25 @@ namespace WebTenMeetings.Controllers
         {
           return (_context.Assembleias?.Any(e => e.AssembleiaId == id)).GetValueOrDefault();
         }
+        public async Task<IActionResult> AdicionarPauta(int? id)
+        {
+
+            var rep = new BaseGenericRepository();
+
+            if (id == null || _context.Assembleias == null)
+            {
+                return NotFound();
+            }
+
+            var assembleia = await _context.Assembleias
+                .FirstOrDefaultAsync(m => m.AssembleiaId == id);
+            if (assembleia == null)
+            {
+                return NotFound();
+            }
+
+            return View(assembleia);
+        }
+
     }
 }
